@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Editable Quotation - UBHEL</title>
+  <title>Jk Pump&Borewell</title>
   <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
   <style>
     body {
@@ -123,15 +123,14 @@
 
   <!-- Company Name and Tagline -->
   <div style="flex: 2; text-align: center;">
-    <div style="font-size: 24px; font-weight: bold; color: #007bff;">શ્રી શ્રી વોટર ટેક સિસ્ટમ</div>
+    <div style="font-size: 24px; font-weight: bold; color: #007bff;">JK PUMP & BOREWELL</div>
     <div style="font-size: 14px; font-style: italic;">Water Solutions for Every Drop</div>
   </div>
 
   <!-- Contact Info -->
   <div style="flex: 1; text-align: right;">
-    <div>📞 +91-98765 43210</div>
-    <div>✉️ info@shreeshreewatertech.com</div>
-    <div>🌐 www.shreeshreewatertech.in</div>
+    <div>📞 +91-9687423330</div>
+    <div>📞 +91-9909482052</div>
   </div>
 </div>
 
@@ -142,13 +141,13 @@
     <label>તારીખ: <input type="text" value="22.5.2025" id="quoteDate" /></label>
   </div>
 
-  <h2 id="quoteTitle">કસ્ટમર: UBHEL - 22.5.2025</h2>
+  <h2 id="quoteTitle">કસ્ટમરનું નામ: UBHEL - 22.5.2025</h2>
 
   <table id="quoteTable">
     <thead>
       <tr>
         <th>વિગત</th>
-        <th>નંબર / ક્વાંટિટી</th>
+        <th>નંગ / ફૂટ </th>
         <th>ભાવ</th>
         <th>રકમ</th>
         <th>❌</th>
@@ -156,14 +155,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" value="બોરીંગ 5" /></td>
+        <td><input type="text" value="બોરીંગ ફૂટ" /></td>
         <td><input type="number" value="120" onchange="calculateTotals()" /></td>
         <td><input type="number" value="110" onchange="calculateTotals()" /></td>
         <td class="amount">0</td>
         <td><button class="remove-btn" onclick="removeRow(this)">X</button></td>
       </tr>
       <tr>
-        <td><input type="text" value="કેસિંગ ISO. એથલાસ" /></td>
+        <td><input type="text" value="કેસિંગ પાઇપ ISO or atlas" /></td>
         <td><input type="number" value="120" onchange="calculateTotals()" /></td>
         <td><input type="number" value="70" onchange="calculateTotals()" /></td>
         <td class="amount">0</td>
@@ -175,9 +174,9 @@
   <button class="btn" onclick="addRow()">➕ Add Item</button>
 
   <div class="note">નોટ: માટી પુરાણ ના અલગથી ચાર્જ લાગશે</div>
-  <div class="note">નોટ: આરસીસી તોડવાની મજૂરી અલગથી લાગશે</div>
+  <div class="note">નોટ: આરસીસી (RCC) તોડવાની મજૂરી અલગથી લાગશે</div>
 
-  <div class="total" id="totalDisplay">ટોટલ. MOTAR. 1 Year Warranty: ₹ 0</div>
+  <div class="total" id="totalDisplay">ટોટલ. Motor 1 Year Warranty: ₹ 0</div>
 </div>
 
 <button class="btn" onclick="downloadPDF()">📄 Download as PDF</button>
