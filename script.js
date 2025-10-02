@@ -54,4 +54,8 @@ function resetQuotation() {
 
 function downloadPDF() {
   calculateTotals();
-  html
+  html2pdf().from(document.body).save("Quotation.pdf");
+}
+
+// THIS IS THE IMPORTANT PART
+window.onload = resetQuotation;
