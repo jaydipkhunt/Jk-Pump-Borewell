@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Quotation - JK PUMP & BOREWELL </title>
+  <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    #visitingCardHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    #visitingCardHeader img {
+      height: 60px;
+    }
+
+    h2 {
+      text-align: center;
+      background-color: #f0c000;
+      padding: 10px;
+      color: #000;
+    }
+
+    .header-inputs {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-inputs input {
+      font-size: 18px;
+      padding: 5px 10px;
+      margin: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f3f3f3;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      border: none;
+      text-align: center;
+    }
+
+    .note {
+      margin-top: 20px;
+      color: red;
+      font-weight: bold;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 18px;
+      margin-top: 20px;
+      font-weight: bold;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      margin-right: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #218838;
+    }
+
+    .remove-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #c82333;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+      }
+
+      thead tr {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+      }
+
+      td {
+        text-align: left;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      td:nth-child(1)::before { content: "વિગત"; }
+      td:nth-child(2)::before { content: "ક્વાંટિટી"; }
+      td:nth-child(3)::before { content: "ભાવ"; }
+      td:nth-child(4)::before { content: "રકમ"; }
+      td:nth-child(5)::before { content: "હટાવો"; }
+    }
+
+    /* Print Styling */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 1cm;
+      }
+
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        overflow: hidden;
+      }
+
+      table, tr, td, th {
+        page-break-inside: avoid !important;
+      }
+
+      .btn, .header-inputs input {
+        display: none !important;
+      }
+
+      input {
+        border: none !important;
+        background: transparent !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Visiting Card Header -->
+<div id="visitingCardHeader">
+  <div style="flex: 1;">
+    <img src="logo.png" alt="Company Logo" />
+  </div>
+  <div style="flex: 2; text-align: center;">
+  <div style="font-size: 24px; font-weight: bold; color: #007bff;"> જેકે પંપ અને બોરવેલ </div>
+    <div style="font-size: 14px; font-style: italic;">Water Solutions for Every Drop</div>
+  </div>
+  <div style="flex: 1; text-align: right;">
+    <div>✉️ PareshBhai Jagani</div>
+    <div>📞 +91-96874-23330</div>
+    <div>📞 +91-99094-82052</div>
+  </div>
+</div>
+
+<!-- Quotation Section -->
+<div id="quotation">
+  <div class="header-inputs">
+    <label>કસ્ટમરનું નામ: <input type="text" id="customerName" value="UBHEL" /></label>
+    <label>તારીખ: <input type="text" id="quoteDate" value="" /></label>
+  </div> 
+  <table id="quoteTable">
+    <thead>
+      <tr>
+        <th>વિગત</th>
+        <th>નંબર / ક્વાંટિટી</th>
+        <th>ભાવ</th>
+        <th>રકમ</th>
+        <th>❌</th>
+      </tr>
+    </thead>
+    <tbody id="quoteBody">
+      <!-- Fixed items will be loaded here -->
+    </tbody>
+  </table>
+
+  <div class="note">નોટ: માટી પુરાણ ના અલગથી ચાર્જ લાગશે</div>
+  <div class="note">નોટ: આરસીસી તોડવાની મજૂરી અલગથી લાગશે</div>
+  <div class="note">નોટ: મોટર મા 1 વર્ષ ની વોરંટી</div>
+
+  <div class="total" id="totalDisplay">ટોટલ: ₹ 0</div>
+</div>
+
+<!-- Action Buttons -->
+<button class="btn" onclick="resetQuotation()">🆕 New Quotation</button>
+<button class="btn" onclick="downloadPDF()">📄 Download PDF</button>
+<button class="btn" onclick="window.print()">🖨️ Print</button>
+
+<script>
+  const defaultItems = [
+    'બોરીંગ ફૂટ',
+    'કેસિંગ પાઇપ ISO or atlas',
+    'સ્ટેનર પાઇપ નંગ',
+    'સોલ્યુશન અને સ્ક્રૂ',
+    'ગાવલ સ્ટેનર વાળા પાઇપ',
+    'ટેમ્પો અને ટ્રેક્ટર ભાડુ',
+    'સબમરસિબલ પંપ',
+    'સ્ટાર્ટર',
+    'ISI & HDPE પાઇપ',
+    'ISI કેબલ મીટર 1.5MM',
+    'સ્ટેપ નિપલ',
+    'બોરકેપ',
+    'ગે. નિપલ & પરચૂરણ',
+    'નોન રિટન વાલ',
+    'પાટા કામ',
+    'પંપ ઉતારવાની મજૂરી',
+    'ખાડો ખોદવાની મજૂરી'
+  ];
+
+  function populateDefaultItems() {
+    const tbody = document.getElementById('quoteBody');
+    tbody.innerHTML = '';
+
+    defaultItems.forEach(item => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${item}</td>
+        <td><input type="number" value="0" onchange="calculateTotals()" /></td>
+        <td><input type="number" value="0" onchange="calculateTotals()" /></td>
+        <td class="amount">0</td>
+        <td><button class="remove-btn" onclick="removeRow(this)">X</button></td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    calculateTotals();
+  }
+
+  function calculateTotals() {
+    const rows = document.querySelectorAll('#quoteBody tr');
+    let grandTotal = 0;
+
+    rows.forEach(row => {
+      const qty = parseFloat(row.cells[1].querySelector('input').value) || 0;
+      const rate = parseFloat(row.cells[2].querySelector('input').value) || 0;
+      const amount = qty * rate;
+      row.cells[3].innerText = amount.toFixed(2);
+      grandTotal += amount;
+    });
+
+    document.getElementById('totalDisplay').innerText =
+      `ટોટલ. MOTAR. 1 Year Warranty: ₹ ${grandTotal.toFixed(2)}`;
+
+    const name = document.getElementById('customerName').value;
+    const date = document.getElementById('quoteDate').value;
+    document.getElementById('quoteTitle').innerText = `કસ્ટમર: ${name} - ${date}`;
+  }
+
+  function removeRow(button) {
+    button.closest('tr').remove();
+    calculateTotals();
+  }
+
+  function resetQuotation() {
+    document.getElementById('customerName').value = 'UBHEL';
+    const today = new Date();
+    const formattedDate = `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`;
+    document.getElementById('quoteDate').value = formattedDate;
+    populateDefaultItems();
+  }
+
+  function downloadPDF() {
+    calculateTotals();
+    const element = document.getElementById('quotation');
+    html2pdf().from(element).save('Quotation_UBHEL.pdf');
+  }
+
+  // Init on page load
+  window.onload = resetQuotation;
+</script>
+
+</body>
+</html>
