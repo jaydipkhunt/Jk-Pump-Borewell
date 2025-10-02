@@ -1,30 +1,23 @@
+/* General styling */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans Gujarati', Arial, sans-serif;
   background: #f4f4f8;
   color: #333;
+  line-height: 1.4;
 }
-
 .header {
-  display: flex;
-  align-items: center;
   background: #fff;
   padding: 15px;
   border-bottom: 2px solid #007BFF;
+  text-align: center;
 }
-
-.logo {
-  height: 70px;
-  margin-right: 15px;
-}
-
 .company-info h1 {
   margin: 0;
-  font-size: 22px;
+  font-size: 24px;
   color: #007BFF;
 }
-
 .customer-section {
   display: flex;
   gap: 10px;
@@ -32,49 +25,54 @@ body {
   padding: 15px;
   flex-wrap: wrap;
 }
-
 .customer-section input {
   padding: 8px;
   font-size: 16px;
   width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-
 #quoteTitle {
   text-align: center;
   margin-top: 0;
   font-size: 20px;
+  margin-bottom: 10px;
 }
-
+#quoteContainer {
+  padding: 0 15px;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
 .item-card {
   background: #fff;
-  margin: 10px;
+  margin: 10px 0;
   padding: 15px;
   border-left: 5px solid #007BFF;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  page-break-inside: avoid;
 }
-
 .item-card h3 {
   margin: 0 0 10px 0;
   font-size: 18px;
 }
-
 .item-fields {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
 }
-
 .item-fields input {
   padding: 6px;
   font-size: 14px;
   width: 100px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
-
-.item-fields span {
+.item-fields span.amount {
   font-weight: bold;
+  min-width: 100px;
 }
-
 .remove-btn {
   background-color: #e74c3c;
   color: white;
@@ -82,8 +80,8 @@ body {
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 3px;
+  margin-left: auto;
 }
-
 .total {
   background: #007BFF;
   color: white;
@@ -93,19 +91,19 @@ body {
   margin: 20px auto;
   width: 90%;
   border-radius: 5px;
+  max-width: 700px;
 }
-
 .notes {
   text-align: center;
   font-size: 14px;
   color: red;
+  max-width: 700px;
+  margin: 0 auto 10px;
 }
-
 .buttons {
   text-align: center;
   margin-bottom: 20px;
 }
-
 button {
   background-color: #28a745;
   color: white;
@@ -115,10 +113,66 @@ button {
   font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
+  min-width: 110px;
 }
 
+/* MOBILE STYLES */
+@media (max-width: 600px) {
+  .customer-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .customer-section input {
+    width: 90%;
+    max-width: 300px;
+  }
+  .item-fields {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .item-fields input,
+  .item-fields span.amount,
+  .remove-btn {
+    width: 100%;
+    margin: 3px 0;
+  }
+  .remove-btn {
+    margin-left: 0;
+  }
+  .total {
+    width: 95%;
+  }
+  button {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+
+/* PRINT STYLES */
 @media print {
-  .buttons, input, .remove-btn {
+  body {
+    background: white;
+    color: black;
+  }
+  .buttons,
+  input,
+  .remove-btn {
     display: none !important;
+  }
+  .item-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+  #quoteContainer,
+  .total,
+  .notes,
+  .header,
+  .customer-section,
+  #quoteTitle {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
